@@ -130,7 +130,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div ref={videoSectionRef} className="h-screen flex justify-center p-4">
+      <div ref={videoSectionRef} className="h-screen flex justify-center p-2">
         <video
           ref={scrollVideoRef}
           src={"/videos/Short-Version.mp4"}
@@ -140,8 +140,6 @@ export default function Hero() {
           className="object-cover h-0 w-0 will-change-auto"
         />
       </div>
-
-      <div className="h-screen"></div>
     </section>
   );
 }
