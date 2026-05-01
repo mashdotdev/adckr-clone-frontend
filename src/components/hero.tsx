@@ -70,7 +70,7 @@ export default function Hero() {
       {/*intro div*/}
       <div
         ref={introDivRef}
-        className="h-screen inset-0 flex items-center justify-center absolute bg-foreground z-999 text-[8vw] font-bold"
+        className="h-screen inset-0 flex items-center justify-center absolute bg-foreground z-999 text-[4vw] font-bold"
       >
         <div className="flex items-center justify-center gap-12 overflow-hidden">
           <span
@@ -87,7 +87,7 @@ export default function Hero() {
             autoPlay
             loop
             muted
-            className="object-cover h-48 w-48 translate-y-[150%]"
+            className="object-cover h-24 w-24 translate-y-[150%]"
           />
           <span
             ref={(el) => {
@@ -107,7 +107,7 @@ export default function Hero() {
             ref={(el) => {
               mainContentTextRefs.current[0] = el;
             }}
-            className="text-[12vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+            className="text-[12vw] font-bold tracking-tight leading-[10vw] translate-y-full"
           >
             THE ART
           </span>
@@ -119,7 +119,7 @@ export default function Hero() {
             autoPlay
             loop
             muted
-            className="object-cover aspect-video w-[18vw]"
+            className="object-cover aspect-video h-[16vh] w-[10vw]"
           />
           <span>)</span>
           <span className="text-2xl font-medium">Showreel</span>
@@ -129,7 +129,7 @@ export default function Hero() {
             ref={(el) => {
               mainContentTextRefs.current[1] = el;
             }}
-            className="text-[12vw] font-bold tracking-tighter leading-none translate-y-full"
+            className="text-[12vw] font-bold tracking-tight leading-none translate-y-full"
           >
             OF
           </span>
@@ -139,7 +139,7 @@ export default function Hero() {
             ref={(el) => {
               mainContentTextRefs.current[2] = el;
             }}
-            className="text-[11vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+            className="text-[11vw] font-bold tracking-tight leading-[10vw] translate-y-full"
           >
             HACKING
           </span>
@@ -149,7 +149,7 @@ export default function Hero() {
             ref={(el) => {
               mainContentTextRefs.current[3] = el;
             }}
-            className="text-[11vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+            className="text-[11vw] font-bold tracking-tight leading-[10vw] translate-y-full"
           >
             SOCIAL
           </span>
