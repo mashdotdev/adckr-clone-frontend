@@ -9,13 +9,16 @@ import { useEffect, useRef, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
+  const [isAnimating, setIsAnimating] = useState(true);
+
   const introRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const introVideoRefs = useRef<HTMLVideoElement | null>(null);
   const introDivRef = useRef<HTMLDivElement | null>(null);
   const scrollVideoRef = useRef<HTMLVideoElement | null>(null);
   const videoSectionRef = useRef<HTMLDivElement | null>(null);
-  const socialRef = useRef<HTMLSpanElement | null>(null);
-  const [isAnimating, setIsAnimating] = useState(true);
+
+  const mainContentTextRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
   const lenis = useLenis();
 
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function Hero() {
 
   useGSAP(() => {
     const introChars = introRefs.current.filter(Boolean);
+    const mainTexts = mainContentTextRefs.current.filter(Boolean);
 
     const introTl = gsap.timeline({
       delay: 0.5,
@@ -42,7 +46,12 @@ export default function Hero() {
         { duration: 1, transform: "translateY(0)" },
         0,
       )
-      .to(introDivRef.current, { duration: 1, opacity: 0 }, "+=2");
+      .to(introDivRef.current, { duration: 1, opacity: 0 }, "+=2")
+      .to(mainTexts, {
+        duration: 1,
+        transform: "translateY(0)",
+        ease: "power3.inOut",
+      });
 
     gsap.to(scrollVideoRef.current, {
       height: "100%",
@@ -51,7 +60,7 @@ export default function Hero() {
         trigger: videoSectionRef.current,
         start: "top bottom",
         end: "bottom bottom",
-        scrub: 1,
+        scrub: true,
       },
     });
   });
@@ -92,38 +101,55 @@ export default function Hero() {
       </div>
 
       {/*main content*/}
-      <div className="h-screen flex flex-col justify-center py-6">
+      <div className="min-h-screen flex flex-col justify-center">
         <div className="overflow-hidden flex items-center justify-center">
-          <span className="text-[12vw] font-bold tracking-tighter leading-none">
+          <span
+            ref={(el) => {
+              mainContentTextRefs.current[0] = el;
+            }}
+            className="text-[12vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+          >
             THE ART
           </span>
         </div>
-        <div className="flex items-center justify-center gap-12 overflow-hidden text-[10vw] font-bold">
+        <div className="flex items-center justify-center gap-12 overflow-hidden text-[12vw] leading-[10vw] font-bold">
           <span>* (</span>
           <video
             src={"/videos/Short-Version.mp4"}
             autoPlay
             loop
             muted
-            className="object-cover h-48 w-48"
+            className="object-cover aspect-video w-[18vw]"
           />
           <span>)</span>
           <span className="text-2xl font-medium">Showreel</span>
         </div>
         <div className="overflow-hidden flex items-center justify-center">
-          <span className="text-[12vw] font-bold tracking-tighter leading-none">
+          <span
+            ref={(el) => {
+              mainContentTextRefs.current[1] = el;
+            }}
+            className="text-[12vw] font-bold tracking-tighter leading-none translate-y-full"
+          >
             OF
           </span>
         </div>
         <div className="overflow-hidden flex items-center justify-center">
-          <span className="text-[12vw] font-bold tracking-tighter leading-none">
+          <span
+            ref={(el) => {
+              mainContentTextRefs.current[2] = el;
+            }}
+            className="text-[11vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+          >
             HACKING
           </span>
         </div>
         <div className="overflow-hidden flex items-center justify-center">
           <span
-            ref={socialRef}
-            className="text-[12vw] font-bold tracking-tighter leading-none"
+            ref={(el) => {
+              mainContentTextRefs.current[3] = el;
+            }}
+            className="text-[11vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
           >
             SOCIAL
           </span>

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/smooth-scroll";
 import Footer from "@/components/footer";
+import { ViewTransitions } from "next-view-transitions";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,16 +31,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SmoothScroll>
-      <html
-        lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
-      >
-        <body className="min-h-full flex flex-col">
-          {children}
-          <Footer />
-        </body>
-      </html>
-    </SmoothScroll>
+    <ViewTransitions>
+      <SmoothScroll>
+        <html
+          lang="en"
+          className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
+        >
+          <body className="min-h-full flex flex-col">
+            {children}
+            <Footer />
+          </body>
+        </html>
+      </SmoothScroll>
+    </ViewTransitions>
   );
 }
