@@ -9,14 +9,27 @@ import { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function Footer() {
-  const nameRef = useRef<HTMLParagraphElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const paraRef = useRef<HTMLParagraphElement>(null);
+  const nameRef = useRef<HTMLParagraphElement>(null);
 
   useGSAP(() => {
     const nameSplit = SplitText.create(nameRef.current, {
       type: "chars",
       charsClass: "char-class",
       autoSplit: true,
+    });
+
+    gsap.to(paraRef.current, {
+      opacity: 1,
+      transform: "translateY(0%)",
+      duration: 1,
+      scrollTrigger: {
+        trigger: footerRef.current,
+        start: "-10% center",
+        end: "top center",
+        scrub: true,
+      },
     });
 
     gsap.to(nameSplit.chars, {
@@ -30,7 +43,6 @@ export default function Footer() {
       scrollTrigger: {
         trigger: footerRef.current,
         start: "center center",
-        // markers: true,
       },
     });
   }, []);
@@ -40,7 +52,10 @@ export default function Footer() {
       ref={footerRef}
       className="min-h-screen bg-[#191919] text-foreground pt-64 flex flex-col overflow-hidden"
     >
-      <div className="flex flex-col gap-12">
+      <div
+        ref={paraRef}
+        className="flex flex-col gap-12 translate-y-full opacity-0"
+      >
         <p className="text-center text-6xl px-24 font font-serif">
           We don&apos;t just do social media, we master it. From scroll-stopping
           content to high-impact designs that drives real results, we make

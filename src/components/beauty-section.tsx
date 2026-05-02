@@ -1,6 +1,9 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Image from "next/image";
+import { useRef } from "react";
 
 const IMAGES = [
   "/images/ana.jpg",
@@ -11,8 +14,47 @@ const IMAGES = [
 ];
 
 export default function BeautySection() {
+  const paraRef = useRef<HTMLParagraphElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imagesRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useGSAP(() => {
+    const images = imagesRefs.current.filter(Boolean);
+    if (!paraRef.current || !containerRef.current || images.length === 0)
+      return;
+
+    gsap.to(paraRef.current, {
+      filter: "blur(0px)",
+      opacity: 1,
+      transform: "translateY(0%)",
+      duration: 1,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "center center",
+        end: "60% center",
+        scrub: true,
+      },
+    });
+
+    gsap.to(images, {
+      filter: "blur(0px)",
+      opacity: 1,
+      transform: "translateY(0%)",
+      duration: 1,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "70% center",
+        end: "77% center",
+        scrub: true,
+      },
+    });
+  }, []);
+
   return (
-    <section className="min-h-screen relative py-64 overflow-hidden">
+    <section
+      ref={containerRef}
+      className="min-h-screen relative py-64 overflow-hidden"
+    >
       <div className="flex items-center justify-center gap-6">
         {/*<span className="text-2xl font-medium">Our services</span>*/}
         <span className="text-[12vw] font-bold tracking-tighter leading-[10vw]">
@@ -80,7 +122,10 @@ export default function BeautySection() {
         <span>)</span>
       </div>
 
-      <div className="my-48 flex flex-col justify-center px-8">
+      <div
+        ref={paraRef}
+        className="my-48 flex flex-col justify-center px-8 translate-y-full opacity-0 blur-md"
+      >
         <p className="font-serif text-center text-6xl max-w-9xl leading-none">
           In a world where everyone is trying to do everything, we choose to
           specialize in the beauty, fashion, and wellness industries.
@@ -94,8 +139,11 @@ export default function BeautySection() {
       <div className="mt-32 flex flex-col items-center max-md:gap-12 md:flex-row md:justify-between px-4 transition-all duration-500">
         {IMAGES.map((image, index: number) => (
           <div
+            ref={(el) => {
+              imagesRefs.current[index] = el;
+            }}
             key={`${index}-${image}`}
-            className="flex flex-col gap-2 w-52 md:w-[8vw]"
+            className="flex flex-col gap-2 w-52 md:w-[8vw] translate-y-full opacity-0 blur-md"
           >
             <span className="text-sm font-semibold">( 0{index + 1} )</span>
             <div className="relative w-full aspect-square">

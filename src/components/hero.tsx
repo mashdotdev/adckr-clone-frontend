@@ -18,6 +18,7 @@ export default function Hero() {
   const videoSectionRef = useRef<HTMLDivElement | null>(null);
 
   const mainContentTextRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const mainContentVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const lenis = useLenis();
 
@@ -47,7 +48,7 @@ export default function Hero() {
         0,
       )
       .to(introDivRef.current, { duration: 1, opacity: 0 }, "+=2")
-      .to(mainTexts, {
+      .to([...mainTexts, mainContentVideoRef.current], {
         duration: 1,
         transform: "translateY(0)",
         ease: "power3.inOut",
@@ -113,16 +114,38 @@ export default function Hero() {
           </span>
         </div>
         <div className="flex items-center justify-center gap-12 overflow-hidden text-[12vw] leading-[10vw] font-bold">
-          <span>* (</span>
+          <span
+            ref={(el) => {
+              mainContentTextRefs.current[4] = el;
+            }}
+            className="translate-y-full"
+          >
+            * (
+          </span>
           <video
+            ref={mainContentVideoRef}
             src={"/videos/Short-Version.mp4"}
             autoPlay
             loop
             muted
-            className="object-cover aspect-video h-[16vh] w-[10vw]"
+            className="object-cover aspect-video h-[16vh] w-[10vw] translate-y-[150%]"
           />
-          <span>)</span>
-          <span className="text-2xl font-medium">Showreel</span>
+          <span
+            ref={(el) => {
+              mainContentTextRefs.current[5] = el;
+            }}
+            className="translate-y-full"
+          >
+            )
+          </span>
+          <span
+            ref={(el) => {
+              mainContentTextRefs.current[6] = el;
+            }}
+            className="text-2xl font-medium translate-y-full"
+          >
+            Showreel
+          </span>
         </div>
         <div className="overflow-hidden flex items-center justify-center">
           <span
