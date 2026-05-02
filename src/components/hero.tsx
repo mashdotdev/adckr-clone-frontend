@@ -47,7 +47,7 @@ export default function Hero() {
         { duration: 1, transform: "translateY(0)" },
         0,
       )
-      .to(introDivRef.current, { duration: 1, opacity: 0 }, "+=2")
+      .to(introDivRef.current, { duration: 1, autoAlpha: 0 }, "+=2")
       .to([...mainTexts, mainContentVideoRef.current], {
         duration: 1,
         transform: "translateY(0)",
