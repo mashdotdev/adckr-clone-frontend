@@ -84,7 +84,7 @@ export default function Hero() {
           </span>
           <video
             ref={introVideoRefs}
-            src={"/videos/Short-Version.mp4"}
+            src={"/videos/chicago.mp4"}
             autoPlay
             loop
             muted
@@ -124,7 +124,7 @@ export default function Hero() {
           </span>
           <video
             ref={mainContentVideoRef}
-            src={"/videos/Short-Version.mp4"}
+            src={"/videos/chicago.mp4"}
             autoPlay
             loop
             muted
@@ -182,7 +182,7 @@ export default function Hero() {
       <div ref={videoSectionRef} className="h-screen flex justify-center p-2">
         <video
           ref={scrollVideoRef}
-          src={"/videos/Short-Version.mp4"}
+          src={"/videos/chicago.mp4"}
           autoPlay
           loop
           muted

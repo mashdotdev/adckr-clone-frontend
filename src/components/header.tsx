@@ -95,7 +95,7 @@ export default function Header() {
         <div className="flex items-center justify-center gap-12 overflow-hidden text-[7vw] leading-[6vw] font-bold">
           <span className="">* (</span>
           <video
-            src={"/videos/Short-Version.mp4"}
+            src={"/videos/chicago.mp4"}
             autoPlay
             loop
             muted

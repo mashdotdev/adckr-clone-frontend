@@ -9,11 +9,11 @@ import { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const IMAGES = [
-  "/images/ana.jpg",
-  "/images/ana.jpg",
-  "/images/ana.jpg",
-  "/images/ana.jpg",
-  "/images/ana.jpg",
+  "/images/chimg.jpg",
+  "/images/chimg.jpg",
+  "/images/chimg.jpg",
+  "/images/chimg.jpg",
+  "/images/chimg.jpg",
 ];
 
 export default function BeautySection() {
@@ -108,7 +108,7 @@ export default function BeautySection() {
             </span>
           </div>
           <video
-            src={"/videos/Short-Version.mp4"}
+            src={"/videos/chicago.mp4"}
             autoPlay
             loop
             muted
@@ -159,7 +159,7 @@ export default function BeautySection() {
             </span>
           </div>
           <video
-            src={"/videos/Short-Version.mp4"}
+            src={"/videos/chicago.mp4"}
             autoPlay
             loop
             muted
@@ -213,7 +213,7 @@ export default function BeautySection() {
           </span>
         </div>
         <video
-          src={"/videos/Short-Version.mp4"}
+          src={"/videos/chicago.mp4"}
           autoPlay
           loop
           muted
