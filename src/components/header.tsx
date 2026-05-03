@@ -99,10 +99,10 @@ export default function Header() {
             autoPlay
             loop
             muted
-            className="object-cover aspect-video h-[12vh] w-[8vw]"
+            className="object-cover aspect-video h-[8vh] w-[20vw] md:h-[12vh] md:w-[8vw]"
           />
           <span className="">)</span>
-          <span className="text-2xl font-medium">Showreel</span>
+          <span className="hidden sm:block text-2xl font-medium">Showreel</span>
         </div>
 
         <div>

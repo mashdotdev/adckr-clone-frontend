@@ -2,8 +2,11 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const IMAGES = [
   "/images/ana.jpg",
@@ -14,14 +17,28 @@ const IMAGES = [
 ];
 
 export default function BeautySection() {
-  const paraRef = useRef<HTMLParagraphElement>(null);
+  const paraRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const imagesRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const headingRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useGSAP(() => {
     const images = imagesRefs.current.filter(Boolean);
+    const headings = headingRefs.current.filter(Boolean);
     if (!paraRef.current || !containerRef.current || images.length === 0)
       return;
+
+    headings.forEach((el) => {
+      gsap.to(el, {
+        transform: "translateY(0%)",
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+        },
+      });
+    });
 
     gsap.to(paraRef.current, {
       filter: "blur(0px)",
@@ -53,80 +70,173 @@ export default function BeautySection() {
   return (
     <section
       ref={containerRef}
-      className="min-h-screen relative py-64 overflow-hidden"
+      className="min-h-screen relative py-24 md:py-64 overflow-hidden"
     >
-      <div className="flex items-center justify-center gap-6">
-        {/*<span className="text-2xl font-medium">Our services</span>*/}
-        <span className="text-[12vw] font-bold tracking-tighter leading-[10vw]">
+      {/* FOR */}
+      <div className="flex items-center justify-center overflow-hidden">
+        <span
+          ref={(el) => {
+            headingRefs.current[0] = el;
+          }}
+          className="text-[12vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+        >
           FOR
         </span>
       </div>
 
-      <div className="flex items-center justify-center gap-8">
-        <span className="text-[12vw] font-bold tracking-tighter leading-[10vw]">
-          BEAUTY
-        </span>
-        <div className="flex items-center justify-center gap-12 overflow-hidden text-[12vw] leading-[10vw] font-bold">
-          <span>(</span>
+      {/* BEAUTY + video */}
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+        <div className="overflow-hidden">
+          <span
+            ref={(el) => {
+              headingRefs.current[1] = el;
+            }}
+            className="text-[12vw] font-bold tracking-tighter leading-[10vw] translate-y-full block"
+          >
+            BEAUTY
+          </span>
+        </div>
+        <div className="flex items-center justify-center gap-4 md:gap-12 text-[12vw] leading-[10vw] font-bold">
+          <div className="overflow-hidden">
+            <span
+              ref={(el) => {
+                headingRefs.current[2] = el;
+              }}
+              className="translate-y-full block"
+            >
+              (
+            </span>
+          </div>
           <video
             src={"/videos/Short-Version.mp4"}
             autoPlay
             loop
             muted
-            className="object-cover h-64 w-64"
+            className="object-cover h-32 w-32 sm:h-48 sm:w-48 md:h-64 md:w-64"
           />
-          <span>)</span>
-          <span className="text-2xl font-medium">{"<-"} Click me</span>
+          <div className="overflow-hidden">
+            <span
+              ref={(el) => {
+                headingRefs.current[3] = el;
+              }}
+              className="translate-y-full block"
+            >
+              )
+            </span>
+          </div>
+          <span className="hidden md:block text-2xl font-medium">
+            {"<-"} Click me
+          </span>
         </div>
       </div>
 
-      <div className="flex items-center justify-center">
-        <span className="text-[12vw] font-bold tracking-tighter leading-[10vw]">
+      {/* FASHION */}
+      <div className="flex items-center justify-center overflow-hidden">
+        <span
+          ref={(el) => {
+            headingRefs.current[4] = el;
+          }}
+          className="text-[12vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+        >
           FASHION
         </span>
       </div>
 
-      <div className="flex items-center justify-center gap-8">
-        <div className="flex items-center justify-center gap-12 overflow-hidden text-[12vw] leading-[10vw] font-bold">
-          <span className="text-2xl font-medium">Click me {"->"} </span>
-          <span>(</span>
+      {/* video + AND */}
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-4 md:gap-8">
+        <div className="flex items-center justify-center gap-4 md:gap-12 text-[12vw] leading-[10vw] font-bold">
+          <span className="hidden md:block text-2xl font-medium">
+            Click me {"->"}
+          </span>
+          <div className="overflow-hidden">
+            <span
+              ref={(el) => {
+                headingRefs.current[5] = el;
+              }}
+              className="translate-y-full block"
+            >
+              (
+            </span>
+          </div>
           <video
             src={"/videos/Short-Version.mp4"}
             autoPlay
             loop
             muted
-            className="object-cover h-64 w-64"
+            className="object-cover h-32 w-32 sm:h-48 sm:w-48 md:h-64 md:w-64"
           />
-          <span>)</span>
+          <div className="overflow-hidden">
+            <span
+              ref={(el) => {
+                headingRefs.current[6] = el;
+              }}
+              className="translate-y-full block"
+            >
+              )
+            </span>
+          </div>
         </div>
-        <span className="text-[12vw] font-bold tracking-tighter leading-[10vw]">
-          AND
-        </span>
+        <div className="overflow-hidden">
+          <span
+            ref={(el) => {
+              headingRefs.current[7] = el;
+            }}
+            className="text-[12vw] font-bold tracking-tighter leading-[10vw] translate-y-full block"
+          >
+            AND
+          </span>
+        </div>
       </div>
 
-      <div className="flex items-center justify-center">
-        <span className="text-[12vw] font-bold tracking-tighter leading-[10vw]">
+      {/* WELLNESS */}
+      <div className="flex items-center justify-center overflow-hidden">
+        <span
+          ref={(el) => {
+            headingRefs.current[8] = el;
+          }}
+          className="text-[12vw] font-bold tracking-tighter leading-[10vw] translate-y-full"
+        >
           WELLNESS
         </span>
       </div>
 
-      <div className="flex items-center justify-center gap-12 overflow-hidden text-[12vw] leading-[10vw] font-bold">
-        <span>(</span>
+      {/* standalone video */}
+      <div className="flex items-center justify-center gap-4 md:gap-12 text-[12vw] leading-[10vw] font-bold">
+        <div className="overflow-hidden">
+          <span
+            ref={(el) => {
+              headingRefs.current[9] = el;
+            }}
+            className="translate-y-full block"
+          >
+            (
+          </span>
+        </div>
         <video
           src={"/videos/Short-Version.mp4"}
           autoPlay
           loop
           muted
-          className="object-cover h-64 w-64"
+          className="object-cover h-32 w-32 sm:h-48 sm:w-48 md:h-64 md:w-64"
         />
-        <span>)</span>
+        <div className="overflow-hidden">
+          <span
+            ref={(el) => {
+              headingRefs.current[10] = el;
+            }}
+            className="translate-y-full block"
+          >
+            )
+          </span>
+        </div>
       </div>
 
+      {/* paragraph */}
       <div
         ref={paraRef}
-        className="my-48 flex flex-col justify-center px-8 translate-y-full opacity-0 blur-md"
+        className="my-24 md:my-48 flex flex-col items-center justify-center px-4 md:px-8 translate-y-full opacity-0 blur-md"
       >
-        <p className="font-serif text-center text-6xl max-w-9xl leading-none">
+        <p className="font-serif text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-5xl leading-tight md:leading-none">
           In a world where everyone is trying to do everything, we choose to
           specialize in the beauty, fashion, and wellness industries.
         </p>
@@ -136,14 +246,15 @@ export default function BeautySection() {
         </button>
       </div>
 
-      <div className="mt-32 flex flex-col items-center max-md:gap-12 md:flex-row md:justify-between px-4 transition-all duration-500">
+      {/* images */}
+      <div className="mt-16 md:mt-32 flex flex-col items-center gap-8 md:flex-row md:justify-between px-4">
         {IMAGES.map((image, index: number) => (
           <div
             ref={(el) => {
               imagesRefs.current[index] = el;
             }}
             key={`${index}-${image}`}
-            className="flex flex-col gap-2 w-52 md:w-[8vw] translate-y-full opacity-0 blur-md"
+            className="flex flex-col gap-2 w-48 sm:w-52 md:w-[8vw] translate-y-full opacity-0 blur-md"
           >
             <span className="text-sm font-semibold">( 0{index + 1} )</span>
             <div className="relative w-full aspect-square">

@@ -128,7 +128,7 @@ export default function Hero() {
             autoPlay
             loop
             muted
-            className="object-cover aspect-video h-[16vh] w-[10vw] translate-y-[150%]"
+            className="object-cover aspect-video h-[8vh] w-[20vw] md:h-[16vh] md:w-[10vw] translate-y-[150%]"
           />
           <span
             ref={(el) => {
